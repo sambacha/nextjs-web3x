@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import useWeb3Modal from './useWeb3Modal';
 
 // get connected account address
