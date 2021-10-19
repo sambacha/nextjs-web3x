@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "NEXT_TELEMETRY_DISABLED=1 next build",
+    "start": "next-boost",
     "lint": "next lint",
     "debug": "NEXT_TELEMETRY_DEBUG=1 next dev",
     "telemetry": "npx next telemetry disable"
