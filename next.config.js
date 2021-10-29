@@ -1,4 +1,3 @@
-/** @type {import('next').NextConfig} */
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
@@ -6,25 +5,21 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-// This file sets a custom webpack configuration to use your Next.js app
-// with Sentry.
-// https://nextjs.org/docs/api-reference/next.config.js/introduction
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/
+// Paths that mustn't have rewrite applied to them, to avoid the whole app to behave inconsistently
+// All items (folders, files) under /public directory should be added there, to avoid redirection when an asset isn't found
+// Will disable url rewrite for those items (should contain all supported languages and all public base paths)
+const noRedirectBlacklistedPaths = ['_next', 'api']; 
+const publicBasePaths = ['robots', 'static', 'favicon.ico']; 
+const noRedirectBasePaths = [ ...publicBasePaths, ...noRedirectBlacklistedPaths]; // ...sourceLocale
 
-const { withSentryConfig } = require('@sentry/nextjs')
-
-const nextConfig = {
-  webpack: (config) => {
-  /** config.module.rules = [
-      ...config.module.rules,
-      {
-        resourceQuery: /raw-lingui/,
-        type: 'javascript/auto',
-      },
-    ]
+// @ts-check
+/**
+ * @type {import('next').NextConfig}
  */
-    return config
-  },
+const nextConfig = {
+  productionBrowserSourceMaps: false,
+  poweredByHeader: false,
+  reactStrictMode: true,
   experimental: { esmExternals: true },
   pwa: {
     dest: 'public',
@@ -32,27 +27,16 @@ const nextConfig = {
     disable: process.env.NODE_ENV === 'development',
   },
   images: {
-    domains: ['assets.sushi.com', 'res.cloudinary.com', 'raw.githubusercontent.com', 'logos.covalenthq.com'],
-  },
-  reactStrictMode: true
-}
-
-const SentryWebpackPluginOptions = {
-  // Additional config options for the Sentry Webpack plugin. Keep in mind that
-  // the following options are set automatically, and overriding them is not
-  // recommended:
-  //   release, url, org, project, authToken, configFile, stripPrefix,
-  //   urlPrefix, include, ignore
-
-  silent: true, // Suppresses all logs
-  // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options.
+    minimumCacheTTL: 1209600,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    domains: ['raw.githubusercontent.com'],
+  }
 }
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-module.exports = withSentryConfig(withPWA(withBundleAnalyzer(nextConfig)), SentryWebpackPluginOptions)
+module.exports = withPWA(withBundleAnalyzer(nextConfig))
 
 // Don't delete this console log, useful to see the config in Vercel deployments
 console.log('next.config.js', JSON.stringify(module.exports, null, 2))
-

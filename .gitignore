@@ -1,8 +1,20 @@
-_dev/
+# -*- mode: gitignore; -*-
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.DS_Store
 node_modules
-/.pnp
-.pnp.js
-
+*.tar.gz
+*.tgz
+*.zip
+# public
+public/workbox*
+public/
+!public/security.txt
 # testing
 /coverage
 
@@ -30,3 +42,4 @@ yarn-error.log*
 
 # vercel
 .vercel
+.next
