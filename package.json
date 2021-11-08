@@ -4,12 +4,15 @@
   "description": "nextjs optimized for web3 performance",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "debug": "NEXT_TELEMETRY_DEBUG=1 next dev",
-    "telemetry": "npx next telemetry disable"
+      "dev": "NEXT_TELEMETRY_DISABLED=1 npx next dev",
+      "build": "NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production npx next build",
+      "start": "NEXT_TELEMETRY_DISABLED=1 next start",
+      "lint": "npx next lint",
+      "debug": "NEXT_TELEMETRY_DEBUG=1 npx next dev",
+      "telemetry": "npx next telemetry disable",
+      "analyze": "cross-env ANALYZE=true next build",
+      "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+      "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "next": "^12.0.1",
