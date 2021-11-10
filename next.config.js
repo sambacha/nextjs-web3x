@@ -2,15 +2,8 @@ const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
-// Paths that mustn't have rewrite applied to them, to avoid the whole app to behave inconsistently
-// All items (folders, files) under /public directory should be added there, to avoid redirection when an asset isn't found
-// Will disable url rewrite for those items (should contain all supported languages and all public base paths)
-const noRedirectBlacklistedPaths = ['_next', 'api']; 
-const publicBasePaths = ['robots', 'static', 'favicon.ico']; 
-const noRedirectBasePaths = [ ...publicBasePaths, ...noRedirectBlacklistedPaths]; // ...sourceLocale
+    enabled: process.env.ANALYZE === 'true',
+});
 
 // @ts-check
 /**
@@ -20,7 +13,12 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
   reactStrictMode: true,
-  experimental: { esmExternals: true },
+  optimizeImages: true,
+  optimizeCss: true,
+  experimental: { 
+    esmExternals: true,
+    outputFileTracing: true
+  },
   pwa: {
     dest: 'public',
     runtimeCaching,
