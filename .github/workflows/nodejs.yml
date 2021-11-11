@@ -29,7 +29,6 @@ jobs:
         uses: actions/setup-node@v2.4.1
         with:
           node-version: ${{ matrix.node }}
-          cache: 'npm'
 
       - name: Install npm dependencies
         run: npm install
