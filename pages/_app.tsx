@@ -1,7 +1,31 @@
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
+import { ThemeProvider } from 'next-themes';
+import { darkTheme, globalCss, theme } from '../stitches.config';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+const globalStyles = globalCss({
+  '*': {
+    fontFamily: '$sans',
+  },
+  'html, body': {
+    color: '$foreground',
+    backgroundColor: '$background',
+  },
+});
+
+function MyApp({ Component, pageProps }) {
+  globalStyles();
+
+  return (
+    <ThemeProvider
+      attribute="class"
+      value={{
+        // @note Run the .toString method to get the classnames of the stitches-theme
+        light: theme.toString(),
+        dark: darkTheme.toString(),
+      }}
+    >
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }
+
 export default MyApp;

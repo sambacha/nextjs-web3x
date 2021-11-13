@@ -4,19 +4,21 @@
   "description": "nextjs optimized for web3 performance",
   "private": true,
   "scripts": {
-      "dev": "NEXT_TELEMETRY_DISABLED=1 npx next dev",
-      "build": "NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production npx next build",
-      "start": "NEXT_TELEMETRY_DISABLED=1 next start",
-      "lint": "npx next lint",
-      "debug": "NEXT_TELEMETRY_DEBUG=1 npx next dev",
-      "telemetry": "npx next telemetry disable",
-      "analyze": "cross-env ANALYZE=true next build",
-      "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
-      "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
+    "dev": "NEXT_TELEMETRY_DISABLED=1 npx next dev",
+    "build": "NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production npx next build",
+    "start": "NEXT_TELEMETRY_DISABLED=1 next start",
+    "lint": "npx next lint",
+    "debug": "NEXT_TELEMETRY_DEBUG=1 npx next dev",
+    "telemetry": "npx next telemetry disable",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
+    "@stitches/react": "^1.2.5",
     "next": "^12.0.1",
     "next-pwa": "^5.4.0",
+    "next-themes": "^0.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
