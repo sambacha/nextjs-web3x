@@ -9,4 +9,6 @@ public/
 *.svg
 dist/
 build/
-
+__tests__
+*.test.*
+__snapshot__/

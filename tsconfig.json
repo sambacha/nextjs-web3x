@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+     "@/functions/*": ["functions/*"],
+      "@/components/*": ["components/*"],
+      "@/lib/*": ["lib/*"],
+      "@/styles/*": ["styles/*"],
+      "@/data/*": ["data/*"]
+    },
     "target": "es2018",
     "lib": [
       "dom",
@@ -9,6 +17,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
