@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import clsx from 'clsx';
 import slugify from '@sindresorhus/slugify';
@@ -38,6 +39,7 @@ export const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export const isInternalUrl = (url) =>
   url.startsWith('/') || url.startsWith('#');
+
 
 export const isElement = (element) => {
   return React.isValidElement(element);
