@@ -1,0 +1,7 @@
+{
+  "name": "Node: attach",
+  "type": "node",
+  "request": "attach",
+  "skipFiles": ["<node_internals>/**"],
+  "port": 9229
+}
